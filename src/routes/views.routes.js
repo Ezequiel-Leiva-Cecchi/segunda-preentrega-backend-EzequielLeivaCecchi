@@ -1,5 +1,5 @@
-import express, { Router } from 'express';
-import { GestorProductsMongo } from '../dao/managerMongoDB/productsMongoManager';
+import{ Router } from 'express';
+import { GestorProductsMongo } from '../dao/managerMongoDB/productsMongoManager.js';
 
 const viewsRouters = Router();
 const productManager = new GestorProductsMongo(); 

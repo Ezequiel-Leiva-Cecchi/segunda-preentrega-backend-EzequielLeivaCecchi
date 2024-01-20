@@ -5,7 +5,7 @@ import handlebars from "express-handlebars";
 import { Server } from "socket.io";
 import productRouter from "./routes/products.routes.js";
 import cartRouter from "./routes/cart.routes.js";
-import viewRoutes from "./routes/viewsRoutes.js";
+import viewRoutes from "./routes/views.routes.js";
 import { GestorProductsMongo } from "./dao/managerMongoDB/productsMongoManager.js";
 
 const PORT = 8080;
@@ -23,7 +23,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 // MongoDB
-mongoose.connect("mongodb://localhost/");
+mongoose.connect("mongodb+srv://ezequielleivacecchi:85ixLqC5qRqh93VJ@productscoder.9liypih.mongodb.net/");
 
 // Configuración de Handlebars
 const hbs = handlebars.create({
@@ -32,10 +32,10 @@ const hbs = handlebars.create({
   },
 });
 
-app.engine("handlebars", hbs.engine);
-app.set("views", "src/views");
-app.set("view engine", "handlebars");
-app.use("/", viewRoutes);
+// app.engine("handlebars", hbs.engine);
+// app.set("views", "src/views");
+// app.set("view engine", "handlebars");
+// app.use("/", viewRoutes);
 
 // Rutas API
 app.use("/api/products", productRouter);

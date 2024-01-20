@@ -1,15 +1,15 @@
 import { Router } from "express";
-import { GestorProductsMongo } from "../dao/managerMongoDB/productsMongoManager.js"; 
-import { uploader } from "../utils/multer.js";
+import { GestorProductsMongo } from "../dao/managerMongoDB/productsMongoManager.js";
 
 const productRouter = Router();
-const productsManager = new GestorProductsMongo(); 
+const productsManager = new GestorProductsMongo();
 
 // Obtener todos los productos
 productRouter.get("/", async (req, res) => {
   try {
     const { limit = 10, page = 1, query = '', sort = '' } = req.query;
     const resultado = await productsManager.obtenerProductos(limit, page, query, sort);
+    console.log(resultado);
 
     if (resultado.resultado === "Éxito") {
       res.status(200).json(resultado);
@@ -26,6 +26,7 @@ productRouter.get("/:pId", async (req, res) => {
   try {
     const { pId } = req.params;
     const resultado = await productsManager.obtenerProductoPorId(pId);
+    console.log(resultado);
 
     if (resultado.resultado === "Éxito") {
       res.status(200).json(resultado);
@@ -38,7 +39,7 @@ productRouter.get("/:pId", async (req, res) => {
 });
 
 // Agregar un nuevo producto
-productRouter.post('/', uploader.single('file'), async (req, res) => {
+productRouter.post('/', async (req, res) => {
   try {
     const newProduct = req.body;
 

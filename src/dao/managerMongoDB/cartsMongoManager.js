@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import cartsModel from "../../models/carts.model";
+import cartsModel from "../../models/carts.model.js";
 
 export class CartProduct {
     constructor(productId, productQuantity) {
@@ -8,7 +8,7 @@ export class CartProduct {
     }
 }
 
-export class cartManager {
+export class cartsManager {
     #carts;
 
     constructor() {

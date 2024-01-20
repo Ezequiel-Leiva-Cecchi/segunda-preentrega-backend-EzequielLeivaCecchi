@@ -12,7 +12,8 @@ const productsSchema = new mongoose.Schema({
         default: "Samsung"
     },
     "descripcion": String,
-    "status": Boolean
+    "status": Boolean,
+    "code": String
 });
 
-export const productsModel = mongoose.model(productsCollection, productsSchema);
+export const productsModel = mongoose.model(productsCollection, productsSchema);;
