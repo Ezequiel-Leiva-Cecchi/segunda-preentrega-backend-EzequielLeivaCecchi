@@ -9,12 +9,12 @@ productRouter.get("/", async (req, res) => {
   try {
     const { limit = 10, page = 1, query = '', sort = '' } = req.query;
     const resultado = await productsManager.obtenerProductos(limit, page, query, sort);
-    console.log(resultado);
 
     if (resultado.resultado === "Éxito") {
+      console.log(resultado)
       res.status(200).json(resultado);
     } else {
-      res.status(400).json({ message: 'Not found' });
+      res.status(404).json({ message: 'Not found' });
     }
   } catch (error) {
     res.status(500).json({ message: "Error al obtener los productos" + error.message });
@@ -26,12 +26,11 @@ productRouter.get("/:pId", async (req, res) => {
   try {
     const { pId } = req.params;
     const resultado = await productsManager.obtenerProductoPorId(pId);
-    console.log(resultado);
 
     if (resultado.resultado === "Éxito") {
       res.status(200).json(resultado);
     } else {
-      res.status(400).json(resultado);
+      res.status(404).json(resultado);
     }
   } catch (error) {
     res.status(500).json({ message: "Error al obtener el producto" + error.message });

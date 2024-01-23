@@ -32,10 +32,10 @@ const hbs = handlebars.create({
   },
 });
 
-// app.engine("handlebars", hbs.engine);
-// app.set("views", "src/views");
-// app.set("view engine", "handlebars");
-// app.use("/", viewRoutes);
+app.engine("handlebars", hbs.engine);
+app.set("views", "src/views");
+app.set("view engine", "handlebars");
+app.use("/", viewRoutes);
 
 // Rutas API
 app.use("/api/products", productRouter);

@@ -14,13 +14,12 @@ export class ProductMongo {
 }
 
 export class GestorProductsMongo {
-    async obtenerProductos(limit = 10, page = 1, consulta = '', orden = '') {
+    async obtenerProductos(limit = 10, consulta = '', orden = '') {
         console.log('Entro a obtener productos productos')
         try {
             const [campo, valor] = consulta.split(':');
             const resultadoConsulta = await productsModel.paginate({ [campo]: valor }, {
                 limit,
-                page,
                 sort: orden ? { price: orden } : {}
             });
             resultadoConsulta.listaProductos = resultadoConsulta.docs;
